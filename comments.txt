@@ -1,0 +1,4 @@
+php artisan vendor:publish --tag=laravel-pagination
+
+# DebugBar
+composer require barryvdh/laravel-debugbar --dev
