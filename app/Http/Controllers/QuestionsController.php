@@ -37,7 +37,7 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validation = $request->validate([
             'title' => 'required|max:255',
             'body' => 'required',
         ]);
