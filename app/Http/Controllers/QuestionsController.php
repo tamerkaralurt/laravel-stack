@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Question;
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionRequest;
 
 class QuestionsController extends Controller
 {
@@ -35,12 +36,9 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        $validation = $request->validate([
-            'title' => 'required|max:255',
-            'body' => 'required',
-        ]);
+        dd($request);   
     }
 
     /**
