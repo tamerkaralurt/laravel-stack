@@ -16,7 +16,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::with('user')->latest()->paginate(10);
-        return view('questions.index',compact('questions'));
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -38,7 +38,7 @@ class QuestionsController extends Controller
      */
     public function store(AskQuestionRequest $request)
     {
-        $request->user()->questions()->create($request->only('title','body'));
+        $request->user()->questions()->create($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Your question has been submitted');
     }
 
@@ -61,7 +61,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        return view('questions.edit',compact('question'));
+        return view('questions.edit', compact('question'));
     }
 
     /**
@@ -73,7 +73,7 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        $question->update($request->only('title','body'));
+        $question->update($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Your question has been updated');
     }
 
@@ -85,6 +85,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect()->route('questions.index')->with('success', 'Your question has been deleted');
     }
 }
