@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Requests\AskQuestionRequest;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionsController extends Controller
 {
@@ -33,7 +34,7 @@ class QuestionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(AskQuestionRequest $request)
@@ -45,7 +46,7 @@ class QuestionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param \App\Question $question
      * @return \Illuminate\Http\Response
      */
     public function show(Question $question)
@@ -57,23 +58,28 @@ class QuestionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Question  $question
+     * @param \App\Question $question
      * @return \Illuminate\Http\Response
      */
     public function edit(Question $question)
-    {
+    {   //Gate::allows : izin verildiyse yani true değer döndüyse çalışır.
+        //Gate::denies : false değer döndüyse çalışır.
+        if (Gate::denies('update-question', $question)) //düzenlenmek istenen soru üyeye ait değilse
+            abort(403, 'Access Denied!');
         return view('questions.edit', compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Question  $question
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Question $question
      * @return \Illuminate\Http\Response
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
+        if (Gate::denies('update-question', $question)) //düzenlenmek istenen soru üyeye ait değilse
+            abort(403, 'Access Denied!');
         $question->update($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Your question has been updated');
     }
@@ -87,6 +93,8 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        if (Gate::denies('delete-question', $question)) //silinmek istenen soru üyeye ait değilse
+            abort(403, 'Access Denied!');
         $question->delete();
         return redirect()->route('questions.index')->with('success', 'Your question has been deleted');
     }
