@@ -64,8 +64,7 @@ class QuestionsController extends Controller
     public function edit(Question $question)
     {   //Gate::allows : izin verildiyse yani true değer döndüyse çalışır.
         //Gate::denies : false değer döndüyse çalışır.
-        if (Gate::denies('update-question', $question)) //düzenlenmek istenen soru üyeye ait değilse
-            abort(403, 'Access Denied!');
+        $this->authorize('update', $question);
         return view('questions.edit', compact('question'));
     }
 
@@ -78,8 +77,7 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
-        if (Gate::denies('update-question', $question)) //düzenlenmek istenen soru üyeye ait değilse
-            abort(403, 'Access Denied!');
+        $this->authorize('update', $question);
         $question->update($request->only('title', 'body'));
         return redirect()->route('questions.index')->with('success', 'Your question has been updated');
     }
@@ -93,8 +91,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        if (Gate::denies('delete-question', $question)) //silinmek istenen soru üyeye ait değilse
-            abort(403, 'Access Denied!');
+        $this->authorize('delete', $question);
         $question->delete();
         return redirect()->route('questions.index')->with('success', 'Your question has been deleted');
     }
