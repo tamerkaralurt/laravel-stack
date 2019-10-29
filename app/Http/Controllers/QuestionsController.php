@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Gate;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        //metodların kullanımı sadece oturum açmış kullanıcılar için ancak index ve show metodu oturum açma işlemi istemiyor.
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -60,6 +66,7 @@ class QuestionsController extends Controller
      *
      * @param \App\Question $question
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(Question $question)
     {   //Gate::allows : izin verildiyse yani true değer döndüyse çalışır.
@@ -71,9 +78,10 @@ class QuestionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param AskQuestionRequest $request
      * @param \App\Question $question
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
