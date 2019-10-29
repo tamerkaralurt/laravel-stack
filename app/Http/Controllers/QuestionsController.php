@@ -50,7 +50,8 @@ class QuestionsController extends Controller
      */
     public function show(Question $question)
     {
-        //
+        $question->increment('views'); //views değerini +1 artırıyor.
+        return view('questions.show', compact('question'));
     }
 
     /**
@@ -80,8 +81,9 @@ class QuestionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Question  $question
+     * @param \App\Question $question
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Question $question)
     {
