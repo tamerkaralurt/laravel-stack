@@ -6,16 +6,16 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex align-items-center">
-                            <h3>Ask Question</h2>
+                            <h3>Edit Question</h2>
                             <div class="ml-auto">
                                 <a href="{{ route('questions.index') }}" class="btn btn-outline-secondary">Go Back</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('questions.store') }}" method="post">
-                            @method('POST')
-                            @include('questions._form',['buttonText' => 'Ask this question']);
+                        <form action="{{ route('questions.update', $question->id) }}" method="post">
+                            @method('PUT')
+                            @include('questions._form',['buttonText' => 'Edit Question'])
                         </form>
                     </div>
                 </div>
