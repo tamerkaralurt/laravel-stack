@@ -3,3 +3,6 @@ php artisan route:list --name=questions
 
 # DebugBar
 composer require barryvdh/laravel-debugbar --dev
+
+# Modifying Columns [farklı tablolarda, biri tablo adı iken diğeri kolon adının aynı olması durumunda kolon adını değiştirmek için kullanacağımız bir eklenti]
+composer require doctrine/dbal

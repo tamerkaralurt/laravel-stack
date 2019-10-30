@@ -37,7 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function questions(){
+    public function questions()
+    {
         return $this->hasMany(Question::class);
     }
 
@@ -45,5 +46,10 @@ class User extends Authenticatable
     {
         // return route('users.show', $this->id);
         return '#';
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
     }
 }
