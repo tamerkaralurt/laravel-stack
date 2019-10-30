@@ -31,4 +31,10 @@ class Answer extends Model
             $answer->question->save();
         });
     }
+
+    public function getCreatedDateAttribute()
+    {
+        // return $this->created_at->forma('d.m.Y');
+        return $this->created_at->diffForHumans();
+    }
 }
