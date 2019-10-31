@@ -52,8 +52,14 @@ class Question extends Model
         //$question->answers()->count();
     }
 
-    public function acceptBestAnswer(Answer $answer){
+    public function acceptBestAnswer(Answer $answer)
+    {
         $this->best_answer_id = $answer->id;
         $this->save();
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');//, 'question_id', 'user_id');
     }
 }
