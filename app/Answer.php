@@ -31,7 +31,7 @@ class Answer extends Model
         static::created(function ($answer) {
             $answer->question->increment('answers_count');
         });
-        static::deleted(function($answer){
+        static::deleted(function ($answer) {
             $answer->question->decrement('answers_count');
             //Silinen cevap en iyi cevap ise sorunun en iyi cevabı null'a atanıyor.
             /*if($question->best_answer_id == $answer->id){
@@ -47,7 +47,18 @@ class Answer extends Model
         return $this->created_at->diffForHumans();
     }
 
-    public function getStatusAttribute(){
-        return $this->id == $this->question->best_answer_id ? 'vote-accepted' : '';
+    public function getStatusAttribute()
+    {
+        return $this->isBest() ? 'vote-accepted' : '';
+    }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest();
+    }
+
+    public function isBest()
+    {
+        return $this->id == $this->question->best_answer_id;
     }
 }
