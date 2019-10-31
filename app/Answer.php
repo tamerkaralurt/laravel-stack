@@ -32,13 +32,12 @@ class Answer extends Model
             $answer->question->increment('answers_count');
         });
         static::deleted(function($answer){
-            $question = $answer->question;
-            $question->decrement('answers_count');
+            $answer->question->decrement('answers_count');
             //Silinen cevap en iyi cevap ise sorunun en iyi cevabı null'a atanıyor.
-            if($question->best_answer_id == $answer->id){
+            /*if($question->best_answer_id == $answer->id){
                 $question->best_answer_id = null;
                 $question->save();
-            }
+            }*/
         });
     }
 
