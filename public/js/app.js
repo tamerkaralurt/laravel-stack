@@ -51406,8 +51406,8 @@ _fortawesome_fontawesome__WEBPACK_IMPORTED_MODULE_0__["default"].library.add([_f
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\uzMan\Documents\Projects\workspace_web\laravelstack\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\uzMan\Documents\Projects\workspace_web\laravelstack\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\uzMan\Projects\Web\Laravel\laravel-stack\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\uzMan\Projects\Web\Laravel\laravel-stack\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
