@@ -1,4 +1,5 @@
 @if ($answersCount > 0)
+    <!-- v-clock: sayfa yenilendiğinde aynı anda hem düzenleme formları hemde normal formlar görünme sorununa çözüm. -->
     <div class="row mt-4" v-cloak>
         <div class="col-md-12">
             <div class="card">
