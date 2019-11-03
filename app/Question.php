@@ -30,7 +30,7 @@ class Question extends Model
 
     public function getCreatedDateAttribute()
     {
-        // return $this->created_at->forma('d.m.Y');
+        //return $this->created_at->format('d.m.Y');
         return $this->created_at->diffForHumans();
     }
 
