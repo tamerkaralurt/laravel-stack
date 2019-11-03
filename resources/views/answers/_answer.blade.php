@@ -21,16 +21,12 @@
                 <div class="row">
                     <div class="col-4">
                         <div class="ml-auto">
-                            @can ('update', $answer)
+                        @can ('update', $answer)
                                 <!-- Tıklandığında edit olayını çağırıyor. -->
                                 <a @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
                             @endcan
                             @can ('delete', $answer)
-                                <form class="form-delete" method="post" action="{{ route('questions.answers.destroy', [$question->id, $answer->id]) }}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
+                                <button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
                             @endcan
                         </div>
                     </div>
