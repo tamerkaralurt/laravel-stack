@@ -13,6 +13,8 @@ class Question extends Model
     protected $fillable = ['title', 'body'];
     //$question = Question::find(1);
     //$question->user->email; gibi kullanılacak.
+    protected $appends = ['created_date'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
