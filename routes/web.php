@@ -11,15 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+Route::get('/', 'QuestionsController@index');
 
 Route::get('/home', function (){
     return redirect()->route('questions.index');
 })->name('home');
+
+Auth::routes();
+
 Route::resource('questions', 'QuestionsController')->except('show');
 //Route::post('/questions/{question}/answers', 'AnswersController@store')->name('answers.store');
 Route::resource('questions.answers', 'AnswersController')->except(['index','show', 'create']);

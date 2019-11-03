@@ -11,6 +11,7 @@
 @endif
 
 @php
+    /** @var TYPE_NAME $model */
     $formId = $name . "-" . $model->id;
     $formAction = "/{$firstURISegment}/{$model->id}/vote";
 @endphp
