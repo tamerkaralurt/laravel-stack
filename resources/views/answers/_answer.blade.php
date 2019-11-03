@@ -11,6 +11,7 @@
                 <div class="form-group">
                     <textarea rows="10" v-model="body" class="form-control" required></textarea>
                 </div>
+                <!-- Eğer body alanı 10 karakterden küçük ise update butonu pasif hale geliyor -->
                 <button class="btn btn-primary btn-sm" :disabled="isInvalid">Update</button>
                 <button class="btn btn-outline-secondary btn-sm" @click="cancel" type="button">Cancel</button>
             </form>
