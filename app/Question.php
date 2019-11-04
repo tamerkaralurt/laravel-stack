@@ -13,7 +13,7 @@ class Question extends Model
     protected $fillable = ['title', 'body'];
     //$question = Question::find(1);
     //$question->user->email; gibi kullanılacak.
-    protected $appends = ['created_date'];
+    protected $appends = ['created_date', 'is_favorited', 'favorites_count'];
 
     public function user()
     {
